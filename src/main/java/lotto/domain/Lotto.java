@@ -12,7 +12,7 @@ public class Lotto {
 
     public Lotto(List<Integer> inputValues) {
         List<LottoNumber> lottoNumbers = inputValues.stream()
-                .map(inputValue -> new LottoNumber(inputValue))
+                .map(LottoNumber::valueOf)
                 .collect(toList());
         checkSize(lottoNumbers);
         checkDuplicateNumbers(lottoNumbers);
