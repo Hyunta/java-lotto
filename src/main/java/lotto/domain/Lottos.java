@@ -7,21 +7,14 @@ import java.util.stream.Collectors;
 public class Lottos {
     private final List<Lotto> lottos;
 
-    public Lottos(List<List<Integer>> manualNumbers, int autoCount) {
-        this.lottos = createLottos(manualNumbers);
-        addAutoLottos(autoCount);
+    public Lottos(List<List<Integer>> inputNumbers) {
+        this.lottos = createLottos(inputNumbers);
     }
 
-    private List<Lotto> createLottos(List<List<Integer>> manualNumbers) {
-        return manualNumbers.stream()
+    private List<Lotto> createLottos(List<List<Integer>> inputNumbers) {
+        return inputNumbers.stream()
                 .map(Lotto::new)
                 .collect(Collectors.toList());
-    }
-
-    private void addAutoLottos(int autoCount) {
-        for (int i = 0; i < autoCount; i++) {
-            this.lottos.add(new Lotto());
-        }
     }
 
     public LottoResult createLottoResult(WinningNumber winningNumber) {

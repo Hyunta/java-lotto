@@ -1,25 +1,14 @@
 package lotto.domain;
 
 import static java.util.stream.Collectors.toList;
-import static lotto.domain.LottoNumber.MAX_BOUND;
-import static lotto.domain.LottoNumber.MIN_BOUND;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Lotto {
-    private static final List<Integer> numbers = IntStream.rangeClosed(MIN_BOUND, MAX_BOUND).boxed().collect(toList());
     private static final int CHOICE_NUMBER_SIZE = 6;
 
     private final List<LottoNumber> lotto;
-
-    public Lotto() {
-        Collections.shuffle(numbers);
-        lotto = collectRightSizeOfNumber();
-        Collections.sort(lotto);
-    }
 
     public Lotto(List<Integer> inputValues) {
         List<LottoNumber> lottoNumbers = inputValues.stream()
@@ -47,13 +36,6 @@ public class Lotto {
         return (int) lotto.stream()
                 .filter(numbers.getLotto()::contains)
                 .count();
-    }
-
-    private List<LottoNumber> collectRightSizeOfNumber() {
-        return numbers.stream()
-                .limit(CHOICE_NUMBER_SIZE)
-                .map(number -> new LottoNumber(number))
-                .collect(toList());
     }
 
     public boolean contains(LottoNumber lottoNumber) {

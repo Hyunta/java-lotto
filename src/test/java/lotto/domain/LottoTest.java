@@ -13,21 +13,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 public class LottoTest {
 
-    @Test
-    @DisplayName("랜덤으로 생성할 때 숫자 6개를 만들어내는가")
-    void Generate_6_Number() {
-        Lotto lotto = new Lotto();
-        assertThat(lotto.getLotto().size()).isEqualTo(6);
-    }
-
-    @Test
-    @DisplayName("랜덤으로 생성한 모든 숫자가 1~45 사이에 위치하는가")
-    void Is_Between_1_To_45() {
-        Lotto lotto = new Lotto();
-        assertThat(lotto.getLotto().stream()
-                .allMatch(lottoNumber -> lottoNumber.getNumber() >= 1 && lottoNumber.getNumber() <= 45)).isTrue();
-    }
-
     @ParameterizedTest
     @MethodSource
     @DisplayName("입력받은 당첨번호가 6개가 아니라면 예외처리하는가?")
